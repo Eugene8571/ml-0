@@ -32,7 +32,7 @@ class NeuralNetwork:
         # considering we have 4 nodes in the hidden layer
         self.weights2 = np.random.rand(4,1)
         self.y = y
-        self.output = np. zeros(y.shape)
+        self.output = np.zeros(y.shape)
         
     def feedforward(self):
         self.layer1 = sigmoid(np.dot(self.input, self.weights1))
