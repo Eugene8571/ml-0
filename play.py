@@ -1,32 +1,36 @@
 import numpy as np
 
-X = [0,1]
-w1 = [[-0.5, 0.1],
-    [0.2, 0.4]]
-
-L1 = np.dot(X,w1)
-print(f"{L1=}")
-
-w2 = [0.3, 0.7]
-out = np.dot(L1, w2)
-print(f"{out=}")
-
-d_out = 1 - 0.34
-print(f"{d_out=}")
-
-d_L1 = np.dot(d_out, w2)
-print(f"{d_L1=}")
-
-print(f"{0.66*0.3=}")
-print(f"{0.66*0.7=}")
+def f(x):
+    return 1/(1+np.exp(-x))
 
 
-a=np.array([0.63870761, 0.68497694])[np.newaxis].T
-b=np.array([0.14006937])
+w = np.array([[0, 0],
+              [0, 0],
+              [0, 0]])
 
-# r=np.dot(a.reshape(2,1),b)
-r = np.dot(a,b)
+X = [1,2,3]
+
+Y = np.dot(X,w)
+
+# print(f"{Y=}")
 
 
-# print(f"{r=}")
+a = np.array([[2,2],[5,5]])
+b = np.array([3,3])
+c = np.array([[5]])
+
+
+
+Y=np.array([0.9892002 , 0.49998858])
+t=np.array([1. , 0.5])
+
+Y=np.array([0.98635056, 0.50218719])
+t=np.array([1. , 0.5])
+w2=np.array([[0.81238427, 1.05046937],
+       [0.34072156, 0.6107213 ]])
+w1=np.array([[0.79662004, 0.72483148],
+       [0.37789945, 0.50889507]])
+# NN.C=9.554555711669237e-05
+
+E = (Y[0]-t[0])**2 + (Y[1]-t[1])**2
 
