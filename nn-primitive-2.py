@@ -31,15 +31,13 @@ class NeuralNetwork(object):
 
     def feedforward(self):
         self.H1 = np.dot(self.X, self.w1.T)
-        self.Y = np.dot(sigmoid(self.H1), self.w2.T)
-        # print(f"{self.t=}")
-        # print(f"{self.Y=}")
+        self.Y = sigmoid(np.dot(sigmoid(self.H1), self.w2.T))
         Y = self.Y
         t = self.t
         self.C = 1/2*(Y[0]-t[0])**2 + 1/2*(Y[1]-t[1])**2
 
     def backprop(self):
-        r = 0.01
+        r = 0.35
 
         def get_W0(X, Y, W):
             for y in range(len(Y)):
@@ -77,12 +75,17 @@ t = [1, 0.5]
 NN = NeuralNetwork(X,t)
 NN.feedforward()
 NN.backprop()
-for x in range(1,5000):
+i = 0
+for x in range(1,100000):
+    i += 1 
     if x % 200 == 0:
-        print(f"{NN.Y.round(4)=}")
-        print(f"{NN.t.round(4)=}")
+        print(f"{NN.Y.round(4)=} {NN.C.round(4)=}")
+        # print(f"{NN.t.round(4)=}")
         # print(f"{NN.w2.round(4)=}")
         # print(f"{NN.w1.round(4)=}")
-        print(f"{NN.C.round(4)=}")
+        print(f" ")
+    if NN.C < 0.001:
+        print(f"{i=} {NN.C=}")
+        break
     NN.feedforward()
     NN.backprop()
